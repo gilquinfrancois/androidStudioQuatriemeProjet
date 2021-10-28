@@ -39,4 +39,21 @@
         android:max="100"
         android:layout_margin="10dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_main_startAS"
+        android:onClick="onMainClickManager"
+        tools:ignore="OnClick"
+        android:text="AsyncTask" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:id="@+id/pb_main_progressionAS"
+        android:layout_margin="10sp"
+        android:max="100"
+        android:visibility="gone" />
+
 </LinearLayout>

@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_main_texte;
     private ThreadTest monThread;
 
+    private ProgressBar pb_main_progressionAS;
+    private Button bt_main_startAS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         pb_main_progressionTH = (ProgressBar) findViewById(R.id.pb_main_progressionTH);
         bt_main_startTH = (Button) findViewById(R.id.bt_main_startTH);
         tv_main_texte = (TextView) findViewById(R.id.tv_main_texte);
+
+        pb_main_progressionAS = (ProgressBar) findViewById(R.id.pb_main_progressionAS);
+        bt_main_startAS = (Button) findViewById(R.id.bt_main_startAS);
     }
 
     public void onMainClickManager(View v) {
@@ -46,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
                     bt_main_startTH.setText("Thread GO");
                     Toast.makeText(this,"Désactivation du Thread !",Toast.LENGTH_SHORT).show();
                 }
+                break;
+
+            case R.id.bt_main_startAS:
+                AsyncroTask asyncroTask = new AsyncroTask(v, bt_main_startAS, pb_main_progressionAS);
+                asyncroTask.execute("paramètre(s) de traitement");
                 break;
         }
     }
