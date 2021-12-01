@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
-
+    <!-- Exercice Thread -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +39,7 @@
         android:max="100"
         android:layout_margin="10dp" />
 
+    <!-- Exercice AsyncTask -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,6 +55,32 @@
         android:id="@+id/pb_main_progressionAS"
         android:layout_margin="10sp"
         android:max="100"
+        android:visibility="gone" />
+
+    <!-- Exercice BackgroundTask -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_main_startThHa"
+        android:onClick="onMainClickManager"
+        tools:ignore="onClick"
+        android:text="Thread + Handler" />
+
+    <ProgressBar
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:id="@+id/pb_main_progressionTrHa1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:visibility="gone" />
+
+    <ProgressBar
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:id="@+id/pb_main_progressionTrHa2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
         android:visibility="gone" />
 
 </LinearLayout>

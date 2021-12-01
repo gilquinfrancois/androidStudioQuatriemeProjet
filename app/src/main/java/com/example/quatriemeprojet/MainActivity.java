@@ -19,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar pb_main_progressionAS;
     private Button bt_main_startAS;
 
+    private ProgressBar pb_main_progressionTrHa1;
+    private ProgressBar pb_main_progressionTrHa2;
+    private Button bt_main_startTrHa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         pb_main_progressionAS = (ProgressBar) findViewById(R.id.pb_main_progressionAS);
         bt_main_startAS = (Button) findViewById(R.id.bt_main_startAS);
+
+        pb_main_progressionTrHa1 = (ProgressBar) findViewById(R.id.pb_main_progressionTrHa1);
+        pb_main_progressionTrHa2 = (ProgressBar) findViewById(R.id.pb_main_progressionTrHa2);
+        bt_main_startTrHa = (Button) findViewById(R.id.bt_main_startThHa);
     }
 
     public void onMainClickManager(View v) {
@@ -57,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.bt_main_startAS:
                 AsyncroTask asyncroTask = new AsyncroTask(v, bt_main_startAS, pb_main_progressionAS);
                 asyncroTask.execute("paramètre(s) de traitement");
+                break;
+
+            case R.id.bt_main_startThHa:
+                BackgroundTask backgroundTask1 = new BackgroundTask(v, bt_main_startTrHa, pb_main_progressionTrHa1);
+                backgroundTask1.start();
+                BackgroundTask backgroundTask2 = new BackgroundTask(v, bt_main_startTrHa, pb_main_progressionTrHa2);
+                backgroundTask2.start();
                 break;
         }
     }
