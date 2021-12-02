@@ -8,6 +8,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
     private NetworkInfo network;
     private ConnectivityManager connexStatus;
 
+    private LinearLayout ln_main_ecrireS7;
+    private CheckBox ch_main_activerouv;
+    private CheckBox ch_main_activerfer;
+    private CheckBox ch_main_aru;
+    private WriteTaskS7 writeS7;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         tv_main_plc = (TextView) findViewById(R.id.tv_main_plc);
         connexStatus = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         network = connexStatus.getActiveNetworkInfo();
+
+        ln_main_ecrireS7 = (LinearLayout) findViewById(R.id.ln_main_ecrireS7);
+        ch_main_activerouv = (CheckBox) findViewById(R.id.ch_main_activerouv);
+        ch_main_activerfer = (CheckBox) findViewById(R.id.ch_main_activerfer);
+        ch_main_aru = (CheckBox) findViewById(R.id.ch_main_aru);
     }
 
     public void onMainClickManager(View v) {
@@ -97,14 +110,42 @@ public class MainActivity extends AppCompatActivity {
                         bt_main_ConnexS7.setText("Déconnexion_S7");
                         readS7 = new ReadTaskS7(v, bt_main_ConnexS7, pb_main_progressionS7, tv_main_plc);
                         readS7.Start("192.168.10.110","0","1");
+
+                        ln_main_ecrireS7.setVisibility(View.VISIBLE);
+                        try {
+                            Thread.sleep(1000);
+                        } catch(InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        writeS7 = new WriteTaskS7();
+                        writeS7.Start("192.168.10.110","0","1");
                     } else {
                         readS7.Stop();
                         bt_main_ConnexS7.setText("Connexion_S7");
                         Toast.makeText(getApplicationContext(),"Traitement interrompu par l'utilisateur !",Toast.LENGTH_LONG).show();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        writeS7.Stop();
+                        ln_main_ecrireS7.setVisibility(View.INVISIBLE);
                     }
                 } else {
                     Toast.makeText(this, "Connexion réseau impossible !", Toast.LENGTH_SHORT).show();
                 }
+                break;
+
+            case R.id.ch_main_activerouv:
+                writeS7.setWriteBool(1, ch_main_activerouv.isChecked() ? 1 : 0);
+                break;
+
+            case R.id.ch_main_activerfer:
+                writeS7.setWriteBool(2, ch_main_activerfer.isChecked() ? 1 : 0);
+                break;
+
+            case R.id.ch_main_aru:
+                writeS7.setWriteBool(1, ch_main_aru.isChecked() ? 1 : 0);
                 break;
         }
     }

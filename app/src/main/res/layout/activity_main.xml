@@ -111,4 +111,53 @@
         android:max="255"
         android:visibility="visible"/>
 
+    <!-- Ecriture API -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ln_main_ecrireS7"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:visibility="invisible">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ch_main_aru"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:background="#FFFF0000"
+            android:textColor="#FFFFFFFF"
+            android:checked="false"
+            android:onClick="onMainClickManager"
+            tools:ignore="onClick"
+            android:text=" A.R.U "/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ch_main_activerouv"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="#FF00FF00"
+            android:checked="false"
+            android:onClick="onMainClickManager"
+            tools:ignore="onClick"
+            android:text=" /\\ Ouvrir /\\ "/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ch_main_activerfer"
+            android:layout_marginRight="10dp"
+            android:background="#FF00FF00"
+            android:checked="false"
+            android:onClick="onMainClickManager"
+            tools:ignore="onClick"
+            android:text=" \\/ Fermer \\/ " />
+
+    </LinearLayout>
+
 </LinearLayout>
